@@ -31,6 +31,8 @@ namespace ProductApi
             app.MapControllers();
 
             app.Run();
+
+
         }
     }
 }

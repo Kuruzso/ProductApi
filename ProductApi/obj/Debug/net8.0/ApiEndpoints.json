@@ -18,5 +18,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ProductApi.Controllers.ProductController",
+    "Method": "Post",
+    "RelativePath": "product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "ProductApi.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

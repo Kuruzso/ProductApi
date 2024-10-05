@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Okt 01. 13:53
--- Kiszolgáló verziója: 10.4.20-MariaDB
--- PHP verzió: 7.3.29
+-- Létrehozás ideje: 2024. Okt 05. 12:30
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `shop`
 --
-CREATE DATABASE IF NOT EXISTS `shop` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `shop`;
 
 -- --------------------------------------------------------
 
@@ -34,7 +32,7 @@ CREATE TABLE `products` (
   `Name` varchar(50) DEFAULT NULL,
   `Price` int(11) DEFAULT NULL,
   `CreatedTime` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `products`
@@ -141,16 +139,6 @@ INSERT INTO `products` (`Id`, `Name`, `Price`, `CreatedTime`) VALUES
 ('f79e085d-fb60-44dd-8371-54b5e555b62c', 'Cognac - Courvaisier', 1659, '2024-06-13 00:00:00'),
 ('ffb5d738-efce-42e3-bceb-a0310d3908b1', 'Mushroom - Porcini Frozen', 6813, '2023-04-04 00:00:00'),
 ('ffc0f36b-b4be-4761-a920-4212f51ad85a', 'Vacuum Bags 12x16', 3607, '2024-05-02 00:00:00');
-
---
--- Indexek a kiírt táblákhoz
---
-
---
--- A tábla indexei `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
