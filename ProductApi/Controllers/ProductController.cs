@@ -61,6 +61,7 @@ namespace ProductApi.Controllers
                 MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
                 cmd.Parameters.AddWithValue("@Name", product.Name);
                 cmd.Parameters.AddWithValue("@Price", product.Price);
+              
 
                 // ExecuteNonQuery for INSERT
                 cmd.ExecuteNonQuery();
@@ -77,7 +78,45 @@ namespace ProductApi.Controllers
 
             return Ok("Product inserted successfully.");
         }
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody] Product product)
+        {
+            if (product == null)
+            {
+                return BadRequest("Product data is required.");
+            }
 
+            try
+            {
+                conn.Connection.Open();
+
+                // SQL a termék frissítésére
+                string sql = "UPDATE products SET Name = @Name, Price = @Price WHERE Id = @Id;";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Name", product.Name);
+                cmd.Parameters.AddWithValue("@Price", product.Price);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected == 0)
+                {
+                    return NotFound("Product not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hiba kezelése (naplózás stb.)
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+            finally
+            {
+                conn.Connection.Close();
+            }
+
+            return Ok("Product updated successfully.");
+        }
 
 
     }
