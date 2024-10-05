@@ -55,5 +55,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProductApi.Controllers.ProductController",
+    "Method": "Delete",
+    "RelativePath": "product/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

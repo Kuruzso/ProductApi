@@ -117,6 +117,39 @@ namespace ProductApi.Controllers
 
             return Ok("Product updated successfully.");
         }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                conn.Connection.Open();
+
+                // SQL a termék törlésére
+                string sql = "DELETE FROM products WHERE Id = @Id;";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected == 0)
+                {
+                    return NotFound("Product not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hiba kezelése (naplózás stb.)
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+            finally
+            {
+                conn.Connection.Close();
+            }
+
+            return Ok("Product deleted successfully.");
+        }
+
 
 
     }
